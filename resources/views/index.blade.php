@@ -95,6 +95,7 @@
         </div>
         <div>
             <img src="https://cdn.pixabay.com/photo/2014/05/03/01/03/laptop-336704_960_720.jpg" alt="">
+            <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/happy-birthday-1231964_960_720.jpg" alt="Cake">
         </div>
     </div>
 @endsection
