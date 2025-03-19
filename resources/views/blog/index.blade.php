@@ -56,9 +56,10 @@
                 By <span class="font-bold italic text-gray-700">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
             </span>
 
-            <p class="text-lg text-gray-600 pt-6 pb-8 leading-7 font-light">
+            <p class="text-lg text-gray-600 pt-6 pb-8 leading-7 font-light truncate-description" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                 {{ $post->description }}
             </p>
+            <a href="javascript:void(0);" class="text-blue-500 hover:underline read-more" onclick="toggleDescription(this)">Continue Reading</a>
 
             <a href="/blog/{{ $post->slug }}" class="uppercase bg-gradient-to-r from-blue-500 to-teal-500 text-white text-sm font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300">
                 Keep Reading
@@ -89,5 +90,20 @@
         </div>
     </div>    
 @endforeach
+
+<script>
+    function toggleDescription(link) {
+        const description = link.previousElementSibling;
+        if (description.style.webkitLineClamp) {
+            description.style.webkitLineClamp = null;
+            description.style.display = 'block';
+            link.textContent = 'Show Less';
+        } else {
+            description.style.webkitLineClamp = 3;
+            description.style.display = '-webkit-box';
+            link.textContent = 'Continue Reading';
+        }
+    }
+</script>
 
 @endsection
