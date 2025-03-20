@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -48,9 +49,21 @@ class PostsController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg|max:5048'
         ]);
 
-        $newImageName = uniqid() . '-' . $request->title . '.' . $request->image->extension();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('images');
 
-        $request->image->move(public_path('images'), $newImageName);
+            // Ensure the directory exists
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move the file
+            $image->move($destinationPath, $imageName);
+
+            $newImageName = $imageName;
+        }
 
         Post::create([
             'title' => $request->input('title'),

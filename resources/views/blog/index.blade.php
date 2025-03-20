@@ -59,9 +59,8 @@
             <p class="text-lg text-gray-600 pt-6 pb-8 leading-7 font-light truncate-description" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                 {{ $post->description }}
             </p>
-            <a href="javascript:void(0);" class="text-blue-500 hover:underline read-more" onclick="toggleDescription(this)">Continue Reading</a>
 
-            <a href="/blog/{{ $post->slug }}" class="uppercase bg-gradient-to-r from-blue-500 to-teal-500 text-white text-sm font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300">
+            <a href="/blog/{{ $post->slug }}" class="text-blue-500 hover:text-blue-700 transition duration-300">
                 Keep Reading
             </a>
 
