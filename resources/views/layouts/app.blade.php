@@ -15,31 +15,27 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+<body class="bg-gray-100 text-gray-800">
     <div id="app">
-        <header class="bg-gray-800 py-6">
-            <div class="container mx-auto flex justify-between items-center px-6">
-                <div>
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-                <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    <a class="no-underline hover:underline" href="/">Home</a>
-                    <a class="no-underline hover:underline" href="/about">About</a>
-                    <a class="no-underline hover:underline" href="/contact">Contact Us</a>
-                    <a class="no-underline hover:underline" href="/blog">Blog</a>
-                    <a class="no-underline hover:underline" href="{{ url('/upcoming-drops') }}">Upcoming Drops</a>
+        <header class="bg-white shadow">
+            <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">Fashion Blog</a>
+                <nav class="space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-gray-900">Home</a>
+                    <a href="/about" class="text-gray-700 hover:text-gray-900">About</a>
+                    <a href="/contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+                    <a class="text-gray-700 hover:text-gray-900" href="/blog">Blog</a>
+                    <a class="text-gray-700 hover:text-gray-900" href="{{ url('/upcoming-drops') }}">Upcoming Drops</a>
                     @guest
-                        <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="text-gray-700 hover:text-gray-900" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
-                            <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="text-gray-700 hover:text-gray-900" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
                         <span>{{ Auth::user()->name }}</span>
 
                         <a href="{{ route('logout') }}"
-                           class="no-underline hover:underline"
+                           class="text-gray-700 hover:text-gray-900"
                            onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -50,13 +46,15 @@
             </div>
         </header>
 
-        <div>
+        <main class="container mx-auto px-4 py-8">
             @yield('content')
-        </div>
+        </main>
 
-        <div>
-            @include('layouts.footer')
-        </div>
+        <footer class="bg-gray-900 text-white py-6 mt-12">
+            <div class="container mx-auto text-center">
+                <p>&copy; {{ date('Y') }} Fashion Blog. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
