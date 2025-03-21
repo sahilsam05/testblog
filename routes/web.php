@@ -31,3 +31,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/upcoming-drops', function () {
+    return view('upcoming-drops');
+});
+

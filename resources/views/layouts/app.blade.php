@@ -29,6 +29,7 @@
                     <a class="no-underline hover:underline" href="/about">About</a>
                     <a class="no-underline hover:underline" href="/contact">Contact Us</a>
                     <a class="no-underline hover:underline" href="/blog">Blog</a>
+                    <a class="no-underline hover:underline" href="{{ url('/upcoming-drops') }}">Upcoming Drops</a>
                     @guest
                         <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
