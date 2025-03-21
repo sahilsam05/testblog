@@ -9,4 +9,12 @@
         {!! $post->content !!}
     </div>
 </article>
+
+<h2>Comments</h2>
+@foreach($post->comments as $comment)
+    <div>
+        <strong>{{ $comment->author }}</strong>
+        <p>{{ $comment->content }}</p>
+    </div>
+@endforeach
 @endsection

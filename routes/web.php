@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use App\Http\Controllers\PostsController;
 Route::get('/', [PagesController::class, 'index']);
 
 Route::resource('/blog', PostsController::class);
+
+Route::post('/blog/{id}/comment', [PostsController::class, 'storeComment'])->name('blog.comment.store');
+
+Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 
 Auth::routes();
 

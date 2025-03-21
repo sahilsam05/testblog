@@ -64,6 +64,26 @@
                 Keep Reading
             </a>
 
+            <div class="comment-section mt-4">
+                <form action="/blog/{{ $post->slug }}/comments" method="POST" class="w-full">
+                    @csrf
+                    <textarea 
+                        name="comment" 
+                        rows="3" 
+                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Write your comment here..."></textarea>
+                    <button 
+                        type="submit" 
+                        class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Submit Comment
+                    </button>
+                </form>
+            </div>
+
+            <a href="/blog/{{ $post->slug }}/comments" class="text-green-500 hover:text-green-700 transition duration-300 mt-2 block">
+                View Comments
+            </a>
+
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <div class="flex justify-end space-x-4 mt-4">
                     <a 
@@ -91,18 +111,7 @@
 @endforeach
 
 <script>
-    function toggleDescription(link) {
-        const description = link.previousElementSibling;
-        if (description.style.webkitLineClamp) {
-            description.style.webkitLineClamp = null;
-            description.style.display = 'block';
-            link.textContent = 'Show Less';
-        } else {
-            description.style.webkitLineClamp = 3;
-            description.style.display = '-webkit-box';
-            link.textContent = 'Continue Reading';
-        }
-    }
+    // Removed toggle functionality for comment section
 </script>
 
 @endsection

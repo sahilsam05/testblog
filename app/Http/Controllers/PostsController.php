@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
 
@@ -140,6 +141,19 @@ class PostsController extends Controller
 
         return redirect('/blog')
             ->with('message', 'Your post has been deleted!');
+    }
+
+    public function storeComment(Request $request, $id)
+    {
+        $request->validate([
+            'author' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->comments()->create($request->only('author', 'content'));
+
+        return redirect()->back()->with('success', 'Comment added successfully!');
     }
 }
 
