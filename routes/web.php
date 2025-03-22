@@ -26,6 +26,8 @@ Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comm
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
+Route::post('/comments/{id}', [PostsController::class, 'storeComment'])->name('comments.store');
+
 Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show');
 
 Auth::routes();

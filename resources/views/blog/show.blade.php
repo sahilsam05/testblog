@@ -22,12 +22,63 @@
 
 <div class="w-11/12 lg:w-4/5 m-auto pt-10">
     <h2 class="text-2xl font-bold text-gray-800">Leave a Comment</h2>
-    <form action="{{ route('comments.store', $post->id) }}" method="POST" class="mt-6">
+    <form id="comment-form" action="{{ route('comments.store', $post->id) }}" method="POST" class="mt-6">
         @csrf
-        <textarea name="comment" rows="4" class="w-full p-4 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Write your comment here..." required></textarea>
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+        <textarea name="content" rows="4" class="w-full p-4 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Write your comment here..." required></textarea>
         <button type="submit" class="mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">
             Submit
         </button>
     </form>
 </div>
+
+<div id="comments-section" class="w-11/12 lg:w-4/5 m-auto pt-10">
+    <!-- Display existing comments -->
+    @foreach($post->comments as $comment)
+        <div class="comment">
+            <strong>{{ $comment->author }}</strong>
+            <p>{{ $comment->content }}</p>
+        </div>
+    @endforeach
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#comment-form').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    console.log('Server Response:', response); // Log the server response for debugging
+                    if (response.success) {
+                        // Append the new comment to the comments section
+                        $('#comments-section').prepend(`
+                            <div class="comment mt-4">
+                                <strong>${response.author}</strong>
+                                <p>${response.content}</p>
+                            </div>
+                        `);
+
+                        // Clear the form fields
+                        $('#comment-form')[0].reset();
+                    }
+                },
+                error: function (xhr) {
+                    console.error('Error:', xhr.responseText); // Log the error response
+                    let errorMessage = 'Failed to add comment. Please try again.';
+                    if (xhr.status === 422 && xhr.responseJSON && xhr.responseJSON.errors) {
+                        errorMessage = Object.values(xhr.responseJSON.errors).flat().join('\n');
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    }
+                    alert(errorMessage);
+                }
+            });
+        });
+    });
+</script>
 @endsection
