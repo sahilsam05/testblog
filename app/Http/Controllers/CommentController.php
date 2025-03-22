@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -6,17 +8,22 @@ use App\Models\Post;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, Post $post)
+    public function store(Request $request)
     {
         $request->validate([
-            'comment' => 'required|string|max:500',
+            'content' => 'required|string',
+            'post_id' => 'required|exists:posts,id',
         ]);
 
-        $post->comments()->create([
-            'user_id' => auth()->id(),
-            'content' => $request->comment,
+        $comment = Comment::create([
+            'content' => $request->content,
+            'post_id' => $request->post_id,
+            'user_id' => auth()->id() ?? null, // Handle guest users
         ]);
 
-        return redirect()->back()->with('success', 'Comment added successfully!');
+        return response()->json([
+            'content' => $comment->content,
+            'user_name' => $comment->user->name ?? 'Guest',
+        ]);
     }
 }

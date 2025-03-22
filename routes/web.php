@@ -24,6 +24,10 @@ Route::post('/blog/{id}/comment', [PostsController::class, 'storeComment'])->nam
 
 Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show');
+
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
