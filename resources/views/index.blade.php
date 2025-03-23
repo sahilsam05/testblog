@@ -10,7 +10,7 @@
                 <p class="mt-6 text-lg sm:text-xl">
                     Discover the latest trends and insights in the world of fashion.
                 </p>
-                <a href="/blog" class="mt-8 inline-block bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
+                <a href="/blog" class="mt-8 inline-block bg-purple-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-purple-600 transition duration-300">
                     Explore Our Blog
                 </a>
             </div>
