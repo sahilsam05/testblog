@@ -12,17 +12,19 @@ class CommentsController extends Controller
         $request->validate([
             'post_id' => 'required|exists:posts,id',
             'content' => 'required|string|max:500',
+            'name' => 'nullable|string|max:255',
         ]);
 
         $comment = new Comment();
         $comment->post_id = $request->post_id;
         $comment->content = $request->content;
-        $comment->user_id = auth()->id(); // Assuming the user is authenticated
+        $comment->user_id = auth()->id(); // Null for anonymous users
+        $comment->name = $request->name; // Name for anonymous users
         $comment->save();
 
         return response()->json([
             'success' => true,
-            'author' => auth()->user()->name,
+            'author' => $comment->user->name ?? $comment->name ?? 'Anonymous',
             'content' => $comment->content,
         ]);
     }
