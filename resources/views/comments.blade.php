@@ -1,0 +1,6 @@
+// ...existing code...
+<div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mb-6">
+    <p class="text-gray-900 text-lg font-medium mb-2">{{ $comment->content }}</p>
+    <small class="text-gray-500 block">By <span class="font-semibold">{{ $comment->author }}</span> on {{ $comment->created_at }}</small>
+</div>
+// ...existing code...

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Models\Post;
 
 class CommentController extends Controller
 {
@@ -15,15 +14,12 @@ class CommentController extends Controller
             'post_id' => 'required|exists:posts,id',
         ]);
 
-        $comment = Comment::create([
-            'content' => $request->content,
-            'post_id' => $request->post_id,
-            'user_id' => auth()->id() ?? null, // Handle guest users
+        Comment::create([
+            'content' => $request->input('content'),
+            'post_id' => $request->input('post_id'),
+            'user_id' => auth()->id(),
         ]);
 
-        return response()->json([
-            'content' => $comment->content,
-            'user_name' => $comment->user->name ?? 'Guest',
-        ]);
+        return redirect()->back()->with('success', 'Comment added successfully!');
     }
 }

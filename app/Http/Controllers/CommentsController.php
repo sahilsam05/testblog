@@ -7,9 +7,7 @@ use App\Models\Comment;
 
 class CommentsController extends Controller
 {
-    // ...existing code...
-
-    public function store(Request $request, $postId)
+    public function store(Request $request)
     {
         $request->validate([
             'post_id' => 'required|exists:posts,id',
@@ -19,15 +17,13 @@ class CommentsController extends Controller
         $comment = new Comment();
         $comment->post_id = $request->post_id;
         $comment->content = $request->content;
-        $comment->author = auth()->user()->name; // Assuming the user is authenticated
+        $comment->user_id = auth()->id(); // Assuming the user is authenticated
         $comment->save();
 
         return response()->json([
             'success' => true,
-            'author' => $comment->author,
+            'author' => auth()->user()->name,
             'content' => $comment->content,
         ]);
     }
-
-    // ...existing code...
 }

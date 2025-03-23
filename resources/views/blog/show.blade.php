@@ -20,8 +20,18 @@
     </p>
 </div>
 
+<div id="comments-section" class="w-11/12 lg:w-4/5 m-auto pt-10">
+    <h2 class="text-2xl font-bold">Comments</h2>
+    @foreach($post->comments as $comment)
+        <div class="comment bg-white p-4 rounded-lg shadow-md mt-4">
+            <strong>{{ $comment->user->name ?? 'Anonymous' }}</strong>
+            <p>{{ $comment->content }}</p>
+        </div>
+    @endforeach
+</div>
+
 <div class="w-11/12 lg:w-4/5 m-auto pt-10">
-    <h2 class="text-2xl font-bold text-gray-800">Leave a Comment</h2>
+    <h2 class="text-2xl font-bold">Leave a Comment</h2>
     <form id="comment-form" action="{{ route('comments.store', $post->id) }}" method="POST" class="mt-6">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
@@ -30,16 +40,6 @@
             Submit
         </button>
     </form>
-</div>
-
-<div id="comments-section" class="w-11/12 lg:w-4/5 m-auto pt-10">
-    <!-- Display existing comments -->
-    @foreach($post->comments as $comment)
-        <div class="comment">
-            <strong>{{ $comment->author }}</strong>
-            <p>{{ $comment->content }}</p>
-        </div>
-    @endforeach
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -57,7 +57,7 @@
                     if (response.success) {
                         // Append the new comment to the comments section
                         $('#comments-section').prepend(`
-                            <div class="comment mt-4">
+                            <div class="comment bg-white p-4 rounded-lg shadow-md mt-4">
                                 <strong>${response.author}</strong>
                                 <p>${response.content}</p>
                             </div>
