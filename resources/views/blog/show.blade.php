@@ -32,17 +32,18 @@
 
 <div class="w-11/12 lg:w-4/5 m-auto pt-10">
     <h2 class="text-2xl font-bold">Leave a Comment</h2>
+    @auth
     <form id="comment-form" action="{{ route('comments.store', $post->id) }}" method="POST" class="mt-6">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        @guest
-        <input type="text" name="name" class="w-full p-4 mb-4 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name (Optional)">
-        @endguest
         <textarea name="content" rows="4" class="w-full p-4 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Write your comment here..." required></textarea>
         <button type="submit" class="mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">
             Submit
         </button>
     </form>
+    @else
+    <p class="mt-6 text-gray-700">You must <a href="{{ route('login') }}" class="text-indigo-600 hover:underline">log in</a> to leave a comment.</p>
+    @endauth
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
