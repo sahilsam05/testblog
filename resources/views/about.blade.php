@@ -2,39 +2,45 @@
 
 @section('content')
     <!-- Hero Section -->
-    <div class="hero bg-blue-500 text-white text-center py-20">
+    <div class="bg-gradient-to-r from-pink-500 to-purple-500 text-white text-center py-20">
         <h1 class="text-5xl font-bold uppercase">About Us</h1>
-        <p class="text-xl mt-4">Learn more about our mission and values</p>
-    </div>
-
-    <!-- Three Column Layout -->
-    <div class="sm:grid grid-cols-3 gap-10 w-4/5 mx-auto py-15">
-        <div class="text-center">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="mx-auto">
-            <h2 class="text-2xl font-bold mt-5">Our Mission</h2>
-            <p class="text-gray-500 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-        </div>
-        <div class="text-center">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="mx-auto">
-            <h2 class="text-2xl font-bold mt-5">Our Vision</h2>
-            <p class="text-gray-500 mt-3">Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem.</p>
-        </div>
-        <div class="text-center">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="mx-auto">
-            <h2 class="text-2xl font-bold mt-5">Our Values</h2>
-            <p class="text-gray-500 mt-3">Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper.</p>
-        </div>
+        <p class="text-xl mt-4">Discover the story behind our passion for fashion</p>
     </div>
 
     <!-- Two Column Layout -->
     <div class="sm:grid grid-cols-2 gap-10 w-4/5 mx-auto py-15">
         <div class="text-center">
-            <img src="https://via.placeholder.com/300" alt="Placeholder Image" class="mx-auto">
-            <p class="text-gray-500 mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+            <!-- Removed the image -->
+            <h2 class="text-3xl font-bold mt-5">Our Journey</h2>
+            <p class="text-gray-600 mt-3 leading-relaxed">
+                From humble beginnings to becoming a trusted name in fashion blogging, we’ve always been driven by our love for style and creativity. Join us as we continue to inspire and empower fashion enthusiasts worldwide.
+            </p>
         </div>
         <div class="text-center">
-            <img src="https://via.placeholder.com/300" alt="Placeholder Image" class="mx-auto">
-            <p class="text-gray-500 mt-5">Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem.</p>
+            <!-- Removed the image -->
+            <h2 class="text-3xl font-bold mt-5">Our Vision</h2>
+            <p class="text-gray-600 mt-3 leading-relaxed">
+                We aim to be the go-to platform for fashion lovers, offering insights, trends, and tips that help you express your unique style. Fashion is more than clothing—it’s a way of life.
+            </p>
         </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="bg-gray-100 py-20">
+        <div class="w-4/5 mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-800">Our Mission</h2>
+            <p class="text-gray-600 mt-5 leading-relaxed">
+                To inspire confidence and creativity through fashion. We believe in celebrating individuality and empowering our readers to embrace their personal style.
+            </p>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-20">
+        <h2 class="text-4xl font-bold">Join Our Community</h2>
+        <p class="text-xl mt-4">Stay updated with the latest trends and tips in fashion</p>
+        <a href="/blog" class="mt-6 inline-block bg-white text-purple-500 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
+            Explore Our Blog
+        </a>
     </div>
 @endsection
