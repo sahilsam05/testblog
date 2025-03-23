@@ -2,26 +2,11 @@
 
 @section('content')
 <div class="w-4/5 m-auto text-center">
-    <div class="py-15 border-b border-gray-300 relative">
-        <h1 class="text-6xl font-extrabold text-gray-800 animate-pulse relative z-10">
+    <div class="py-15">
+        <h1 class="text-5xl font-bold text-gray-800">
             Blog Posts
         </h1>
-        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/path-to-your-gif.gif');"></div>
-        <div class="absolute inset-0 flex justify-center items-center">
-            <div class="w-full h-full rounded-full animate-gradient bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 opacity-50 blur-lg"></div>
-        </div>
     </div>
-    <style>
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
-        }
-    </style>
 </div>
 
 @if (session()->has('message'))
@@ -89,9 +74,5 @@
         </div>
     </div>    
 @endforeach
-
-<script>
-    // Removed toggle functionality for comment section
-</script>
 
 @endsection
